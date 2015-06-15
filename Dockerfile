@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 
 # Based on https://github.com/sonodar/docker-jdk8. Thanks sonodar! :-)
 MAINTAINER David Castellanos <davidcaste@gmail.com>
