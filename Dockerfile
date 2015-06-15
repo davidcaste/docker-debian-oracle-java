@@ -1,6 +1,10 @@
 FROM debian:wheezy
 
-MAINTAINER sonodar <ryoheisonoda@outlook.com>
+# Based on https://github.com/sonodar/docker-jdk8. Thanks sonodar! :-)
+MAINTAINER David Castellanos <davidcaste@gmail.com>
+
+# Latest Oracle JDK version
+ENV JDK_VERSION 1.8.0_45
 
 # Install oracle-jdk8
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list \
@@ -8,11 +12,10 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | te
     && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886 \
     && apt-get update && apt-get upgrade -y \
     && echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections \
-    && apt-get install -y oracle-java8-installer \
-    && apt-get install oracle-java8-set-default
-
-# Clean up
-RUN apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/*
+    && apt-get install -y --no-install-recommends oracle-java8-installer oracle-java8-set-default \
+    && apt-get autoremove --purge -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/oracle-jdk8-installer
 
 # Set environment variables
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
