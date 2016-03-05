@@ -1,6 +1,5 @@
 FROM debian:jessie
 
-# Based on https://github.com/sonodar/docker-jdk8. Thanks sonodar! :-)
 MAINTAINER David Castellanos <davidcaste@gmail.com>
 
 ENV JAVA_VERSION_MAJOR=8 \
@@ -13,7 +12,7 @@ ENV JAVA_VERSION_MAJOR=8 \
     LANG=C.UTF-8
 
 RUN apt-get update -q && \
-    apt-get install -q -y --no-install-recommends ca-certificates curl && \
+    apt-get install -q -y --no-install-recommends ca-certificates curl unzip && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/java.tar.gz \
       http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz && \
     gunzip /tmp/java.tar.gz && \
@@ -21,6 +20,8 @@ RUN apt-get update -q && \
     ln -s /opt/jdk1.${JAVA_VERSION_MAJOR}.0_${JAVA_VERSION_MINOR} ${JAVA_HOME} && \
     find ${JAVA_HOME} -maxdepth 1 -mindepth 1 | grep -v jre | xargs rm -rf && \
     cd ${JAVA_HOME} && ln -s ./jre/bin ./bin && \
+    curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" -o /tmp/unlimited_jce_policy.zip "http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip" && \
+    unzip -jo -d ${JAVA_HOME}/jre/lib/security /tmp/unlimited_jce_policy.zip && \
     rm -rf ${JAVA_HOME}/*src.zip \
            ${JAVA_HOME}/lib/missioncontrol \
            ${JAVA_HOME}/lib/visualvm \
@@ -54,7 +55,7 @@ RUN apt-get update -q && \
            ${JAVA_HOME}/jre/lib/oblique-fonts \
            ${JAVA_HOME}/jre/lib/plugin.jar \
            /tmp/* /var/cache/apk/* && \
-    apt-get remove --purge -y ca-certificates curl && \
+    apt-get remove --purge -y ca-certificates curl unzip && \
     apt-get autoremove --purge -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

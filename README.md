@@ -4,8 +4,9 @@
 
 [![](https://badge.imagelayers.io/davidcaste/debian-oracle-java:latest.svg)](https://imagelayers.io/?images=davidcaste/debian-oracle-java:latest)
 
-Basic [Docker](https://www.docker.com/) image to run [Java](https://www.java.com/) applications.
-This image is based on [Debian](http://www.debian.org/) Jessie. Includes Bash, since many Java applications like to have convoluted Bash start-up scripts.
+Basic [Docker](https://www.docker.com/) image to run [Java](https://www.java.com/) applications, based on [Debian](http://www.debian.org/) Jessie. This image is patched with Java Cryptographic Extension (JCE) Unlimited Strength Jurisdiction Policy Files.
+
+It also includes Bash, since many Java applications like to have convoluted Bash start-up scripts.
 
 Based on [`anapsix/alpine-java`](https://hub.docker.com/r/anapsix/alpine-java/) Docker image (thanks [anapsix](https://github.com/anapsix)!!).
 
