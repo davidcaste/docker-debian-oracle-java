@@ -1,0 +1,15 @@
+sudo: required
+
+language: c
+
+services:
+  - docker
+
+before_install:
+  - docker info
+  - docker build -t debian-jre8 8/jre/
+  - docker build -t debian-jdk8 8/jdk/
+
+script:
+  - docker run -it --rm debian-jre8 java -version
+  - docker run -it --rm debian-jdk8 java -version
