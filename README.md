@@ -12,7 +12,7 @@ Based on [`anapsix/alpine-java`](https://hub.docker.com/r/anapsix/alpine-java/) 
 
 ### Versions
 
-**JRE8/JDK8 Version**: `8u74-b02`  
+**JRE8/JDK8 Version**: `8u92-b14`  
 **JRE7/JDK7 Version**: `7u80-b15`
 
 ### Tags

@@ -5,7 +5,7 @@ set -o pipefail -e
 JRE_TEMPLATE="Dockerfile.jre.tpl"
 JDK_TEMPLATE="Dockerfile.jdk.tpl"
 
-declare -a JAVA_VERSIONS=( ["7"]="7.80.15" ["8"]="8.74.02" )
+declare -a JAVA_VERSIONS=( ["7"]="7.80.15" ["8"]="8.92.14" )
 declare -A JAVA_JCE_URLS=( ["7"]="http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip" ["8"]="http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip" )
 
 for VERSION in ${!JAVA_VERSIONS[@]}; do

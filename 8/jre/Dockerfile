@@ -3,8 +3,8 @@ FROM debian:jessie
 MAINTAINER David Castellanos <davidcaste@gmail.com>
 
 ENV JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=74 \
-    JAVA_VERSION_BUILD=02 \
+    JAVA_VERSION_MINOR=92 \
+    JAVA_VERSION_BUILD=14 \
     JAVA_PACKAGE=server-jre \
     JAVA_HOME=/opt/java \
     JVM_OPTS="" \
